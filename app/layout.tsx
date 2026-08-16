@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "VEXA — Energy, Focus, Recovery",
   description:
-    "VEXA — функциональный энергетический напиток. Познакомьтесь с коллекцией, составом и характером каждого вкуса.",
+    "VEXA is functional energy built for focus, motion and recovery. Explore every edition and the formula inside.",
 };
 
 export const viewport: Viewport = {
@@ -15,7 +15,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ru">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

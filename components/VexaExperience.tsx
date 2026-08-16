@@ -20,9 +20,9 @@ const products: Product[] = [
     tone: "01 / SIGNATURE",
     accent: "#ffbd37",
     accentRgb: "255, 189, 55",
-    image: "/images/vexa-gold.png",
-    profile: "Чистый цитрусовый профиль юдзу с сухим, собранным финишем.",
-    note: "Яркий старт",
+    image: "/images/vexa-gold-transparent.png",
+    profile: "A clean yuzu citrus profile with a dry, focused finish.",
+    note: "Bright ignition",
   },
   {
     name: "AQUA",
@@ -30,9 +30,9 @@ const products: Product[] = [
     tone: "02 / ZERO NOISE",
     accent: "#2cf5e5",
     accentRgb: "44, 245, 229",
-    image: "/images/vexa-aqua.png",
-    profile: "Прохладная интерпретация юдзу — свежая, лёгкая и точная.",
-    note: "Холодный импульс",
+    image: "/images/vexa-aqua-transparent.png",
+    profile: "A chilled take on yuzu — crisp, weightless and precise.",
+    note: "Cold impulse",
   },
   {
     name: "PULSE",
@@ -40,9 +40,9 @@ const products: Product[] = [
     tone: "03 / NIGHT SHIFT",
     accent: "#ff3f9f",
     accentRgb: "255, 63, 159",
-    image: "/images/vexa-pulse.png",
-    profile: "Ягодный характер, глубокая кислинка и эффектное послевкусие.",
-    note: "Ночной ритм",
+    image: "/images/vexa-pulse-transparent.png",
+    profile: "A vivid berry character with deep acidity and an electric finish.",
+    note: "Night rhythm",
   },
   {
     name: "NEBULA",
@@ -50,17 +50,17 @@ const products: Product[] = [
     tone: "04 / LIMITLESS",
     accent: "#9bff45",
     accentRgb: "155, 255, 69",
-    image: "/images/vexa-nebula.png",
-    profile: "Многослойный цитрусовый микс с яркой зелёной нотой.",
-    note: "За пределами",
+    image: "/images/vexa-nebula-transparent.png",
+    profile: "A layered citrus fusion charged with a bright green note.",
+    note: "Beyond limits",
   },
 ];
 
 const facts = [
-  ["66 мг", "кофеина"],
-  ["6,6 г", "коллаген-пептидов"],
-  ["1 г", "BCAA"],
-  ["1,3 г", "таурина"],
+  ["66 mg", "caffeine"],
+  ["6.6 g", "collagen peptides"],
+  ["1 g", "BCAA"],
+  ["1.3 g", "taurine"],
 ];
 
 function ArrowIcon() {
@@ -178,21 +178,21 @@ export default function VexaExperience() {
       <div className="scroll-progress" aria-hidden="true" />
 
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
-        <a className="brand" href="#top" aria-label="VEXA — на главную">
+        <a className="brand" href="#top" aria-label="VEXA — home">
           VEXA<span>®</span>
         </a>
-        <nav className={menuOpen ? "is-open" : ""} aria-label="Основная навигация">
-          <a href="#collection" onClick={() => setMenuOpen(false)}>Коллекция</a>
-          <a href="#formula" onClick={() => setMenuOpen(false)}>Формула</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>О VEXA</a>
+        <nav className={menuOpen ? "is-open" : ""} aria-label="Primary navigation">
+          <a href="#collection" onClick={() => setMenuOpen(false)}>Editions</a>
+          <a href="#formula" onClick={() => setMenuOpen(false)}>Formula</a>
+          <a href="#about" onClick={() => setMenuOpen(false)}>About VEXA</a>
         </nav>
         <button className="header-cta" onClick={scrollToCollection}>
-          Смотреть вкусы <ArrowIcon />
+          Explore editions <ArrowIcon />
         </button>
         <button
           className={`menu-button ${menuOpen ? "is-open" : ""}`}
           onClick={() => setMenuOpen((value) => !value)}
-          aria-label="Открыть меню"
+          aria-label="Open menu"
           aria-expanded={menuOpen}
         >
           <span /><span />
@@ -207,35 +207,35 @@ export default function VexaExperience() {
         <div className="hero-copy">
           <p className="eyebrow"><span /> Functional energy / 330 ml</p>
           <h1>
-            <span>ЭНЕРГИЯ</span>
-            <span className="outline">БУДУЩЕГО</span>
+            <span>ENERGY</span>
+            <span className="outline">OF THE FUTURE</span>
           </h1>
           <p className="hero-lead">
-            Функциональный напиток для энергии, фокуса и восстановления.
-            Чистый дизайн. Точная формула. Яркий характер.
+            Functional energy engineered for focus, motion and recovery.
+            Pure design. Precise formula. Unmistakable character.
           </p>
           <div className="hero-actions">
             <button className="primary-button" onClick={scrollToCollection}>
-              Исследовать VEXA <span><ArrowIcon /></span>
+              Explore VEXA <span><ArrowIcon /></span>
             </button>
             <div className="micro-copy">
               <BoltIcon />
-              <span><b>66 мг</b> кофеина в банке</span>
+              <span><b>66 mg</b> caffeine per can</span>
             </div>
           </div>
         </div>
 
-        <div className="hero-product" aria-label="Две банки энергетического напитка VEXA Gold">
+        <div className="hero-product" aria-label="VEXA Gold energy drink, front and back cans">
           <div className="energy-halo" aria-hidden="true" />
           <div className="can-shadow" aria-hidden="true" />
           <img
             src="/images/vexa-gold-transparent.png"
-            alt="VEXA Gold — вид спереди и сзади"
+            alt="VEXA Gold — front and back"
             width="640"
             height="480"
           />
           <div className="can-reflection" aria-hidden="true" />
-          <span className="product-callout callout-one"><i /> Состав нового поколения</span>
+          <span className="product-callout callout-one"><i /> Next-generation formula</span>
           <span className="product-callout callout-two"><i /> Yuzu original</span>
         </div>
 
@@ -244,7 +244,7 @@ export default function VexaExperience() {
           <span>FOCUS</span><i />
           <span>RECOVERY</span>
         </div>
-        <a className="scroll-hint" href="#experience" aria-label="Прокрутить к следующему разделу">
+        <a className="scroll-hint" href="#experience" aria-label="Scroll to the next section">
           <span>SCROLL TO ACTIVATE</span><i />
         </a>
       </section>
@@ -252,10 +252,10 @@ export default function VexaExperience() {
       <section className="story" id="experience" ref={storyRef}>
         <div className="story-sticky">
           <div className="story-glow" aria-hidden="true" />
-          <p className="story-index">01 — ПРИКОСНИСЬ К ЭНЕРГИИ</p>
+          <p className="story-index">01 — ENTER THE ENERGY FIELD</p>
           <div className="story-copy story-copy-left">
-            <p>СОБРАНО ДЛЯ ДВИЖЕНИЯ</p>
-            <h2>ВКЛЮЧАЕТСЯ<br />В НУЖНЫЙ <em>МОМЕНТ.</em></h2>
+            <p>BUILT FOR MOTION</p>
+            <h2>ACTIVATES<br />WHEN IT <em>MATTERS.</em></h2>
           </div>
           <div className="flight-can" aria-hidden="true">
             <img src="/images/vexa-gold-transparent.png" alt="" />
@@ -263,7 +263,7 @@ export default function VexaExperience() {
           <div className="flight-rings" aria-hidden="true"><i /><i /><i /></div>
           <div className="story-copy story-copy-right">
             <span>FORMULA 01</span>
-            <p>Энергия без визуального шума. Продукт становится частью пространства и реагирует на ваше движение.</p>
+            <p>Energy without visual noise. The product becomes part of the space and responds to your movement.</p>
           </div>
           <div className="story-meter" aria-hidden="true">
             <span>0</span><div><i /></div><span>100</span>
@@ -275,9 +275,9 @@ export default function VexaExperience() {
         <div className="section-heading reveal">
           <div>
             <p className="eyebrow"><span /> 04 VISUAL EDITIONS</p>
-            <h2>ВЫБЕРИ СВОЙ<br /><em>ИМПУЛЬС.</em></h2>
+            <h2>CHOOSE YOUR<br /><em>IMPULSE.</em></h2>
           </div>
-          <p>Четыре характера одной функциональной формулы. Открой карточку, чтобы рассмотреть банку и узнать детали.</p>
+          <p>Four distinct characters. One functional formula. Open an edition to inspect every detail.</p>
         </div>
 
         <div className="product-grid">
@@ -297,15 +297,21 @@ export default function VexaExperience() {
                 <span>330 ML</span>
               </div>
               <div className="product-image-wrap">
+                <div className="edition-grid" aria-hidden="true" />
                 <div className="card-glow" aria-hidden="true" />
-                <img src={product.image} alt={`Две банки VEXA ${product.name}`} loading="lazy" />
+                <div className="can-pair" aria-hidden="true">
+                  <img className="can-half can-half-front" src={product.image} alt="" loading="lazy" />
+                  <img className="can-half can-half-back" src={product.image} alt="" loading="lazy" />
+                </div>
+                <img className="can-pair-reflection" src={product.image} alt="" aria-hidden="true" loading="lazy" />
+                <span className="sr-only">VEXA {product.name}, front and back cans</span>
               </div>
               <div className="card-content">
                 <div>
                   <h3>{product.name}</h3>
                   <p>{product.edition}</p>
                 </div>
-                <button onClick={() => setActiveProduct(index)} aria-label={`Подробнее о VEXA ${product.name}`}>
+                <button onClick={() => setActiveProduct(index)} aria-label={`View VEXA ${product.name} details`}>
                   <ArrowIcon />
                 </button>
               </div>
@@ -321,7 +327,7 @@ export default function VexaExperience() {
         </div>
         <div className="formula-visual reveal">
           <div className="formula-image">
-            <img src="/images/vexa-nebula.png" alt="VEXA Nebula — передняя и задняя сторона банки" loading="lazy" />
+            <img src="/images/vexa-nebula-transparent.png" alt="VEXA Nebula — front and back cans" loading="lazy" />
           </div>
           <span className="formula-label label-energy"><i /> ENERGY</span>
           <span className="formula-label label-focus"><i /> FOCUS</span>
@@ -329,8 +335,8 @@ export default function VexaExperience() {
         </div>
         <div className="formula-content reveal">
           <p className="eyebrow"><span /> INSIDE THE FORMULA</p>
-          <h2>НИЧЕГО<br />ЛИШНЕГО.<br /><em>ТОЛЬКО ИМПУЛЬС.</em></h2>
-          <p className="formula-lead">Формула, которую можно прочитать. Ключевые компоненты указаны на банке — здесь мы собрали главное.</p>
+          <h2>NOTHING<br />EXTRA.<br /><em>PURE IMPULSE.</em></h2>
+          <p className="formula-lead">A formula you can read. Every key component is printed on the can — here is what matters most.</p>
           <div className="facts-grid">
             {facts.map(([value, label], index) => (
               <div key={label}>
@@ -340,23 +346,23 @@ export default function VexaExperience() {
               </div>
             ))}
           </div>
-          <p className="formula-footnote">Содержание компонентов указано на 330 мл продукта. Высокое содержание кофеина.</p>
+          <p className="formula-footnote">Component values are stated per 330 ml can. High caffeine content.</p>
         </div>
       </section>
 
       <section className="manifesto section-shell" id="about">
         <div className="manifesto-top reveal">
           <span>VEXA / 2026</span>
-          <p>Не просто напиток.<br />Состояние готовности.</p>
+          <p>More than a drink.<br />A state of readiness.</p>
         </div>
         <h2 className="reveal">
-          СКОНЦЕНТРИРУЙСЯ.<br />
-          <span>ДВИГАЙСЯ.</span> ВОССТАНАВЛИВАЙСЯ.
+          FOCUS.<br />
+          <span>MOVE.</span> RECOVER.
         </h2>
         <div className="manifesto-bottom reveal">
-          <p>Мы создаём VEXA для моментов, когда идея должна превратиться в действие.</p>
+          <p>We create VEXA for the moment an idea has to become action.</p>
           <button className="primary-button" onClick={scrollToCollection}>
-            Найти свою VEXA <span><ArrowIcon /></span>
+            Find your VEXA <span><ArrowIcon /></span>
           </button>
         </div>
       </section>
@@ -364,17 +370,17 @@ export default function VexaExperience() {
       <footer>
         <a className="footer-brand" href="#top">VEXA<span>®</span></a>
         <div className="footer-links">
-          <a href="#collection">Коллекция</a>
-          <a href="#formula">Формула</a>
-          <a href="#about">О бренде</a>
+          <a href="#collection">Editions</a>
+          <a href="#formula">Formula</a>
+          <a href="#about">About</a>
         </div>
-        <p>Высокое содержание кофеина. Не рекомендуется детям, беременным и кормящим женщинам. Информация на сайте носит ознакомительный характер.</p>
+        <p>High caffeine content. Not recommended for children, pregnant or breastfeeding women. Product information is provided for reference only.</p>
         <div className="footer-bottom"><span>© 2026 VEXA ENERGY</span><span>DESIGNED TO MOVE</span></div>
       </footer>
 
       {activeProduct !== null && (
         <div className="product-modal" role="dialog" aria-modal="true" aria-label={`VEXA ${products[activeProduct].name}`}>
-          <button className="modal-backdrop" onClick={() => setActiveProduct(null)} aria-label="Закрыть карточку" />
+          <button className="modal-backdrop" onClick={() => setActiveProduct(null)} aria-label="Close product details" />
           <article
             className="modal-card"
             style={{
@@ -382,7 +388,7 @@ export default function VexaExperience() {
               "--accent-rgb": products[activeProduct].accentRgb,
             } as CSSProperties}
           >
-            <button className="modal-close" onClick={() => setActiveProduct(null)} aria-label="Закрыть">
+            <button className="modal-close" onClick={() => setActiveProduct(null)} aria-label="Close">
               <span /><span />
             </button>
             <div className="modal-visual">
@@ -396,16 +402,16 @@ export default function VexaExperience() {
               <h3>{products[activeProduct].edition}</h3>
               <p className="modal-description">{products[activeProduct].profile}</p>
               <dl>
-                <div><dt>Объём</dt><dd>330 мл</dd></div>
-                <div><dt>Кофеин</dt><dd>66 мг</dd></div>
-                <div><dt>Коллаген</dt><dd>6,6 г</dd></div>
-                <div><dt>BCAA</dt><dd>1 г</dd></div>
+                <div><dt>Volume</dt><dd>330 ml</dd></div>
+                <div><dt>Caffeine</dt><dd>66 mg</dd></div>
+                <div><dt>Collagen</dt><dd>6.6 g</dd></div>
+                <div><dt>BCAA</dt><dd>1 g</dd></div>
               </dl>
-              <p className="modal-warning">Высокое содержание кофеина. Состав и дизайн упаковки смотрите на изображении продукта.</p>
+              <p className="modal-warning">High caffeine content. See the product image for the complete ingredients and packaging information.</p>
               <div className="modal-navigation">
-                <button onClick={() => setActiveProduct((activeProduct + products.length - 1) % products.length)}>← Предыдущая</button>
+                <button onClick={() => setActiveProduct((activeProduct + products.length - 1) % products.length)}>← Previous</button>
                 <span>{String(activeProduct + 1).padStart(2, "0")} / 04</span>
-                <button onClick={() => setActiveProduct((activeProduct + 1) % products.length)}>Следующая →</button>
+                <button onClick={() => setActiveProduct((activeProduct + 1) % products.length)}>Next →</button>
               </div>
             </div>
           </article>
