@@ -2,21 +2,29 @@
   "name": "vexa-energy",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/build.mjs",
+    "build:next": "next build",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-server-dom-webpack": "latest",
+    "vinext": "latest"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "typescript": "latest"
+    "@vitejs/plugin-react": "latest",
+    "@vitejs/plugin-rsc": "latest",
+    "typescript": "latest",
+    "vite": "latest"
   },
   "packageManager": "pnpm@11.19.0"
 }
