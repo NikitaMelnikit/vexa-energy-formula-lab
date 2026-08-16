@@ -132,6 +132,44 @@ const products: Product[] = [
       ],
     }),
   },
+  {
+    name: "EMBER",
+    edition: "Ginger–Grapefruit",
+    tone: "06 / SPICE SIGNAL",
+    accent: "#a6e06b",
+    accentRgb: "166, 224, 107",
+    image: "/images/vexa-ember-transparent.png",
+    profile: "A vivid grapefruit edge grounded by the warm, botanical pulse of ginger.",
+    note: "Botanical ignition",
+    badge: "BOTANICAL EDITION",
+    ingredients: createFormula({
+      collagen: "Hydrolyzed collagen (peptides)",
+      sucralose: "~0.04 g, to taste",
+      flavors: [
+        { name: "Natural grapefruit flavor", amount: "0.4–0.7 ml, to taste" },
+        { name: "Natural ginger flavor", amount: "0.2–0.4 ml, to taste" },
+      ],
+    }),
+  },
+  {
+    name: "AURA",
+    edition: "Pear–Cardamom",
+    tone: "07 / AROMATIC CORE",
+    accent: "#f1a6a0",
+    accentRgb: "241, 166, 160",
+    image: "/images/vexa-aura-transparent.png",
+    profile: "Silky pear brightness lifted by a precise, aromatic trace of cardamom.",
+    note: "Rose-gold clarity",
+    badge: "ROSE EDITION",
+    ingredients: createFormula({
+      collagen: "Hydrolyzed collagen (peptides)",
+      sucralose: "~0.04 g, to taste",
+      flavors: [
+        { name: "Natural pear flavor", amount: "0.4–0.7 ml, to taste" },
+        { name: "Natural cardamom flavor", amount: "0.1–0.2 ml, to taste" },
+      ],
+    }),
+  },
 ];
 
 const facts = [
@@ -389,10 +427,10 @@ export default function VexaExperience() {
       <section className="collection section-shell" id="collection">
         <div className="section-heading reveal">
           <div>
-            <p className="eyebrow"><span /> 05 VISUAL EDITIONS</p>
+            <p className="eyebrow"><span /> 07 VISUAL EDITIONS</p>
             <h2>CHOOSE YOUR<br /><em>IMPULSE.</em></h2>
           </div>
-          <p>Five distinct characters. One functional core. Open an edition to inspect every detail.</p>
+          <p>Seven distinct characters. One functional core. Open an edition to inspect every detail.</p>
         </div>
 
         <div className="product-grid">
