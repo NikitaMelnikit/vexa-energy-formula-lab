@@ -315,6 +315,11 @@ img { display: block; max-width: 100%; }
   transition: transform .16s ease, opacity .7s ease, translate .7s ease, box-shadow .5s ease;
 }
 .product-card:nth-child(2n) { translate: 0 70px; }
+.product-card.is-featured { grid-column: 1 / -1; min-height: 680px; margin-top: 70px; translate: 0 0; background: radial-gradient(circle at 50% 44%, rgba(var(--accent-rgb), .12), transparent 35%), linear-gradient(125deg, #111418, #050607 58%, #11161a); }
+.product-card.is-featured .can-pair { inset: 6% 25% 14%; }
+.product-card.is-featured .can-pair-reflection { left: 29%; right: 29%; width: 42%; }
+.product-card.is-featured .card-content h3 { font-size: clamp(72px, 9vw, 138px); }
+.product-card.is-featured .card-topline span:last-child { color: var(--accent); }
 .product-card:hover { box-shadow: 0 35px 90px rgba(var(--accent-rgb), .18); }
 .product-card::before { content: ""; position: absolute; inset: 0; z-index: 6; border: 1px solid rgba(var(--accent-rgb), .28); border-radius: inherit; pointer-events: none; }
 .product-card::after { content: ""; position: absolute; z-index: 5; top: 0; left: -80%; width: 40%; height: 100%; background: linear-gradient(105deg, transparent, rgba(255,255,255,.08), transparent); transform: skewX(-18deg); transition: left .9s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
@@ -342,33 +347,51 @@ img { display: block; max-width: 100%; }
 .card-content button:hover { color: #050505; background: var(--accent); rotate: -25deg; }
 .card-content svg { width: 23px; fill: none; stroke: currentColor; stroke-width: 1.4; }
 
-.formula { position: relative; min-height: 100svh; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 5vw; padding: 150px 7vw; overflow: hidden; background: #070707; }
+.formula { position: relative; min-height: 100svh; display: grid; grid-template-columns: .92fr 1.08fr; align-items: start; gap: 5vw; padding: 135px 6vw; overflow: hidden; background: #070707; }
 .formula-background { position: absolute; inset: 0; pointer-events: none; overflow: hidden; opacity: .026; }
 .formula-background span { position: absolute; font: 700 34vw/1 "Oswald"; letter-spacing: -.06em; }
 .formula-background span:first-child { top: -12%; left: -8%; }
 .formula-background span:last-child { bottom: -18%; right: -4%; }
-.formula-visual { position: relative; min-height: 720px; display: grid; place-items: center; isolation: isolate; }
-.formula-visual::before { content: ""; position: absolute; z-index: -2; width: 74%; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(44,245,229,.2); box-shadow: 0 0 120px rgba(44,245,229,.11), inset 0 0 80px rgba(44,245,229,.06); }
-.formula-visual::after { content: ""; position: absolute; z-index: -1; bottom: 9%; width: 62%; height: 8%; border-radius: 50%; background: rgba(44,245,229,.2); filter: blur(30px); }
-.formula-image { position: relative; width: 100%; height: 690px; overflow: visible; }
-.formula-image::before { content: ""; position: absolute; inset: 10% 7%; background-image: linear-gradient(rgba(44,245,229,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(44,245,229,.08) 1px, transparent 1px); background-size: 44px 44px; mask-image: radial-gradient(circle, #000, transparent 69%); }
-.formula-image img { position: relative; width: 100%; height: 100%; object-fit: contain; padding: 5%; filter: saturate(.95) drop-shadow(0 45px 35px rgba(0,0,0,.65)); transition: transform 1.2s cubic-bezier(.2,.7,.2,1), filter .8s ease; }
+.formula-visual { position: sticky; top: 92px; min-height: calc(100svh - 120px); display: grid; place-items: center; isolation: isolate; }
+.formula-visual::before { content: ""; position: absolute; z-index: -2; width: 78%; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(var(--accent-rgb),.22); box-shadow: 0 0 120px rgba(var(--accent-rgb),.13), inset 0 0 80px rgba(var(--accent-rgb),.07); transition: border-color .5s ease, box-shadow .5s ease; }
+.formula-visual::after { content: ""; position: absolute; z-index: -1; bottom: 9%; width: 62%; height: 8%; border-radius: 50%; background: rgba(var(--accent-rgb),.22); filter: blur(30px); transition: background .5s ease; }
+.formula-image { position: relative; width: 100%; height: min(680px, 76svh); overflow: visible; animation: formula-swap .6s cubic-bezier(.2,.75,.2,1) both; }
+@keyframes formula-swap { from { opacity: 0; transform: translateY(16px) scale(.97); } }
+.formula-image::before { content: ""; position: absolute; inset: 10% 7%; background-image: linear-gradient(rgba(var(--accent-rgb),.08) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--accent-rgb),.08) 1px, transparent 1px); background-size: 44px 44px; mask-image: radial-gradient(circle, #000, transparent 69%); }
+.formula-image img { position: relative; width: 100%; height: 100%; object-fit: contain; padding: 5%; filter: saturate(.98) drop-shadow(0 45px 35px rgba(0,0,0,.65)); transition: transform 1.2s cubic-bezier(.2,.7,.2,1), filter .8s ease; }
 .formula-visual:hover .formula-image img { transform: translateY(-10px) scale(1.025); filter: saturate(1.1) drop-shadow(0 55px 40px rgba(0,0,0,.72)); }
 .formula-label { position: absolute; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid rgba(255,255,255,.23); background: rgba(5,5,5,.55); backdrop-filter: blur(10px); font: 500 10px/1 "Oswald"; letter-spacing: .15em; }
-.formula-label i { width: 6px; height: 6px; border-radius: 50%; background: #2cf5e5; box-shadow: 0 0 12px #2cf5e5; }
+.formula-label i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
 .label-energy { left: -2%; top: 27%; }
 .label-focus { right: -4%; top: 52%; }
 .label-recovery { left: 7%; bottom: 10%; }
-.formula-content { position: relative; z-index: 2; }
-.formula-content h2 { font-size: clamp(56px, 6.3vw, 104px); }
-.formula-content h2 em { display: block; font-size: .6em; line-height: 1.3; letter-spacing: .01em; }
-.formula-lead { max-width: 540px; margin: 30px 0 42px; color: rgba(255,255,255,.52); font-size: 14px; line-height: 1.8; }
-.facts-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-.facts-grid > div { position: relative; padding: 24px; min-height: 130px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.facts-grid span { position: absolute; right: 14px; top: 14px; color: rgba(255,255,255,.25); font: 500 8px/1 "Oswald"; }
-.facts-grid strong { display: block; color: #2cf5e5; font: 500 35px/1 "Oswald"; letter-spacing: -.02em; }
-.facts-grid p { margin: 12px 0 0; color: rgba(255,255,255,.48); font-size: 10px; letter-spacing: .11em; text-transform: uppercase; }
-.formula-footnote { color: rgba(255,255,255,.3); font-size: 9px; line-height: 1.5; }
+.formula-edition-mark { position: absolute; left: 5%; bottom: 7%; color: var(--accent); font: 500 9px/1 "Oswald"; letter-spacing: .18em; }
+.formula-content { position: relative; z-index: 2; min-width: 0; }
+.formula-tabs { display: grid; grid-template-columns: repeat(5, 1fr); margin-bottom: 38px; border: 1px solid var(--line); }
+.formula-tabs button { min-width: 0; padding: 15px 8px; color: rgba(255,255,255,.36); background: transparent; border-right: 1px solid var(--line); font: 500 10px/1 "Oswald"; letter-spacing: .12em; transition: color .25s ease, background .25s ease; }
+.formula-tabs button:last-child { border-right: 0; }
+.formula-tabs button span { display: block; margin-bottom: 7px; color: rgba(255,255,255,.18); font-size: 7px; }
+.formula-tabs button:hover { color: #fff; background: rgba(255,255,255,.035); }
+.formula-tabs button.is-active { color: #050505; background: var(--accent); }
+.formula-tabs button.is-active span { color: rgba(0,0,0,.45); }
+.formula-panel { animation: formula-panel-in .55s cubic-bezier(.2,.75,.2,1) both; }
+@keyframes formula-panel-in { from { opacity: 0; transform: translateY(14px); } }
+.formula-badge { margin: 0 0 12px; color: var(--accent); font: 600 9px/1 "Oswald"; letter-spacing: .18em; }
+.formula-content h2 { font-size: clamp(58px, 6.6vw, 108px); }
+.formula-content h2 em { display: block; color: var(--accent); font-size: .46em; line-height: 1.35; letter-spacing: .01em; }
+.formula-lead { max-width: 620px; margin: 25px 0 26px; color: rgba(255,255,255,.56); font-size: 14px; line-height: 1.8; }
+.formula-facts { display: grid; grid-template-columns: repeat(4, 1fr); margin-bottom: 25px; border: 1px solid var(--line); }
+.formula-facts span { padding: 13px 10px; color: rgba(255,255,255,.36); border-right: 1px solid var(--line); font-size: 8px; line-height: 1.35; letter-spacing: .08em; text-transform: uppercase; }
+.formula-facts span:last-child { border-right: 0; }
+.formula-facts strong { display: block; margin-bottom: 5px; color: var(--accent); font: 500 20px/1 "Oswald"; letter-spacing: 0; text-transform: none; }
+.formula-table-wrap { max-height: 460px; overflow: auto; border: 1px solid var(--line); scrollbar-width: thin; scrollbar-color: rgba(var(--accent-rgb),.45) transparent; }
+.formula-table { width: 100%; border-collapse: collapse; }
+.formula-table th { position: sticky; z-index: 1; top: 0; padding: 13px 16px; color: rgba(255,255,255,.36); background: #0c0c0c; font-size: 8px; letter-spacing: .12em; text-align: left; text-transform: uppercase; }
+.formula-table th:last-child, .formula-table td:last-child { text-align: right; }
+.formula-table td { padding: 12px 16px; color: rgba(255,255,255,.58); border-top: 1px solid rgba(255,255,255,.08); font-size: 10px; line-height: 1.35; }
+.formula-table td:last-child { color: #fff; font: 500 11px/1.35 "Oswald"; white-space: nowrap; }
+.formula-table tbody tr:hover { background: rgba(var(--accent-rgb),.035); }
+.formula-footnote { margin: 14px 0 0; color: rgba(255,255,255,.3); font-size: 9px; line-height: 1.5; }
 
 .manifesto { color: #0b0b0b; background: var(--gold); overflow: hidden; }
 .manifesto-top, .manifesto-bottom { display: flex; justify-content: space-between; align-items: flex-start; }
@@ -392,6 +415,7 @@ footer > p { max-width: 680px; margin: 35px 0 70px; color: rgba(255,255,255,.34)
 .product-card:nth-child(2).is-visible { transition-delay: .1s; }
 .product-card:nth-child(3).is-visible { transition-delay: .05s; }
 .product-card:nth-child(4).is-visible { transition-delay: .15s; }
+.product-card:nth-child(5).is-visible { transition-delay: .08s; }
 
 .product-modal { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 3vw; }
 .modal-backdrop { position: absolute; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,.82); backdrop-filter: blur(16px); }
@@ -416,6 +440,11 @@ footer > p { max-width: 680px; margin: 35px 0 70px; color: rgba(255,255,255,.34)
 .modal-copy dt { color: rgba(255,255,255,.36); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; }
 .modal-copy dd { margin: 0; font: 500 13px/1 "Oswald"; }
 .modal-warning { color: rgba(255,255,255,.28); font-size: 9px; line-height: 1.6; }
+.modal-formula-heading { display: flex; justify-content: space-between; margin: 28px 0 10px; color: var(--accent); font: 500 8px/1 "Oswald"; letter-spacing: .14em; text-transform: uppercase; }
+.formula-table-wrap.is-compact { max-height: 245px; border-color: rgba(255,255,255,.1); }
+.is-compact .formula-table th { padding: 10px 12px; font-size: 7px; }
+.is-compact .formula-table td { padding: 9px 12px; font-size: 8px; }
+.is-compact .formula-table td:last-child { font-size: 9px; }
 .modal-navigation { display: flex; justify-content: space-between; align-items: center; margin-top: 35px; }
 .modal-navigation button { padding: 0; color: rgba(255,255,255,.6); background: none; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
 .modal-navigation button:hover { color: var(--accent); }
@@ -442,7 +471,7 @@ footer > p { max-width: 680px; margin: 35px 0 70px; color: rgba(255,255,255,.34)
   .story-copy-right { width: 30vw; }
   .flight-can { height: 64vh; }
   .formula { grid-template-columns: 1fr; padding: 120px 8vw; }
-  .formula-visual { min-height: 600px; }
+  .formula-visual { position: relative; top: auto; min-height: 600px; }
   .formula-image { height: 590px; }
   .formula-content { max-width: 700px; }
 }
@@ -482,6 +511,10 @@ footer > p { max-width: 680px; margin: 35px 0 70px; color: rgba(255,255,255,.34)
   .product-grid { grid-template-columns: 1fr; }
   .product-card { min-height: 560px; padding: 20px; }
   .product-card:nth-child(2n) { translate: 0 0; }
+  .product-card.is-featured { min-height: 560px; margin-top: 0; }
+  .product-card.is-featured .can-pair { inset: 12% 0 18%; }
+  .product-card.is-featured .can-pair-reflection { left: 14%; right: 14%; width: 72%; }
+  .product-card.is-featured .card-content h3 { font-size: 60px; }
   .can-pair { inset: 12% 0 18%; }
   .can-pair-reflection { bottom: 1%; }
   .card-content { left: 20px; right: 20px; bottom: 20px; }
@@ -494,8 +527,12 @@ footer > p { max-width: 680px; margin: 35px 0 70px; color: rgba(255,255,255,.34)
   .label-energy { left: -1%; }
   .label-focus { right: -1%; }
   .formula-content h2 { font-size: 55px; margin-top: 12px; }
-  .facts-grid > div { min-height: 110px; padding: 18px; }
-  .facts-grid strong { font-size: 29px; }
+  .formula-tabs { grid-template-columns: repeat(5, minmax(58px, 1fr)); overflow-x: auto; }
+  .formula-tabs button { padding: 13px 7px; font-size: 8px; }
+  .formula-facts { grid-template-columns: repeat(2, 1fr); }
+  .formula-facts span:nth-child(2) { border-right: 0; }
+  .formula-facts span:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .formula-table-wrap { max-height: 390px; }
   .manifesto-top > p { width: 54%; }
   .manifesto h2 { margin: 80px 0; font-size: 57px; }
   .manifesto-bottom { display: block; }

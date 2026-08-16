@@ -2,6 +2,11 @@
 
 import { CSSProperties, PointerEvent, useEffect, useRef, useState } from "react";
 
+type Ingredient = {
+  name: string;
+  amount: string;
+};
+
 type Product = {
   name: string;
   edition: string;
@@ -11,48 +16,121 @@ type Product = {
   image: string;
   profile: string;
   note: string;
+  ingredients: Ingredient[];
+  featured?: boolean;
+  badge?: string;
 };
+
+const createFormula = ({
+  flavors,
+  ginseng = false,
+  collagen = "Hydrolyzed collagen",
+  sucralose = "~0.04 g",
+}: {
+  flavors: Ingredient[];
+  ginseng?: boolean;
+  collagen?: string;
+  sucralose?: string;
+}): Ingredient[] => [
+  { name: "Carbonated water", amount: "Base" },
+  { name: collagen, amount: "6.6 g" },
+  { name: "BCAA", amount: "1 g" },
+  { name: "Caffeine anhydrous", amount: "66 mg" },
+  { name: "Taurine", amount: "1.3 g" },
+  ...(ginseng ? [{ name: "Ginseng extract", amount: "0.17 g" }] : []),
+  { name: "Citric acid", amount: "To pH ~3.0–3.3" },
+  { name: "Potassium citrate", amount: "0.33 g" },
+  { name: "Sucralose", amount: sucralose },
+  ...flavors,
+  { name: "Sodium benzoate", amount: "0.13–0.17 g" },
+];
 
 const products: Product[] = [
   {
     name: "GOLD",
-    edition: "Yuzu Original",
+    edition: "Yuzu–Ginseng",
     tone: "01 / SIGNATURE",
     accent: "#ffbd37",
     accentRgb: "255, 189, 55",
     image: "/images/vexa-gold-transparent.png",
-    profile: "A clean yuzu citrus profile with a dry, focused finish.",
+    profile: "Bright yuzu citrus sharpened by the warm, focused depth of ginseng.",
     note: "Bright ignition",
+    badge: "CORE EDITION",
+    ingredients: createFormula({
+      ginseng: true,
+      flavors: [{ name: "Natural yuzu flavor", amount: "0.5–1 ml" }],
+    }),
   },
   {
-    name: "AQUA",
-    edition: "Arctic Yuzu",
-    tone: "02 / ZERO NOISE",
+    name: "PRISM",
+    edition: "Grape–Lychee",
+    tone: "02 / DUAL SIGNAL",
+    accent: "#b9ff52",
+    accentRgb: "185, 255, 82",
+    image: "/images/vexa-nebula-transparent.png",
+    profile: "Juicy grape refracted through a delicate, luminous lychee finish.",
+    note: "Full spectrum",
+    badge: "PRISM EDITION",
+    ingredients: createFormula({
+      flavors: [
+        { name: "Natural grape flavor", amount: "0.4–0.7 ml" },
+        { name: "Natural lychee flavor", amount: "0.3–0.6 ml" },
+      ],
+    }),
+  },
+  {
+    name: "TIDE",
+    edition: "Mint–Cucumber",
+    tone: "03 / ZERO NOISE",
     accent: "#2cf5e5",
     accentRgb: "44, 245, 229",
     image: "/images/vexa-aqua-transparent.png",
-    profile: "A chilled take on yuzu — crisp, weightless and precise.",
-    note: "Cold impulse",
+    profile: "Clean cucumber freshness carried by a cool, controlled mint current.",
+    note: "Clean current",
+    badge: "TIDAL EDITION",
+    ingredients: createFormula({
+      flavors: [
+        { name: "Natural cucumber flavor", amount: "0.3–0.5 ml" },
+        { name: "Natural mint flavor", amount: "0.1–0.2 ml" },
+      ],
+    }),
   },
   {
-    name: "PULSE",
-    edition: "Berry Voltage",
-    tone: "03 / NIGHT SHIFT",
+    name: "NOIR",
+    edition: "Cherry–Pink Grapefruit",
+    tone: "04 / NIGHT SHIFT",
     accent: "#ff3f9f",
     accentRgb: "255, 63, 159",
     image: "/images/vexa-pulse-transparent.png",
-    profile: "A vivid berry character with deep acidity and an electric finish.",
-    note: "Night rhythm",
+    profile: "Dark cherry intensity cut with the vivid bitterness of pink grapefruit.",
+    note: "After-dark voltage",
+    badge: "NOIR EDITION",
+    ingredients: createFormula({
+      flavors: [
+        { name: "Natural cherry flavor", amount: "0.4–0.7 ml" },
+        { name: "Natural pink grapefruit flavor", amount: "0.3–0.5 ml" },
+      ],
+    }),
   },
   {
-    name: "NEBULA",
-    edition: "Yuzu Fusion",
-    tone: "04 / LIMITLESS",
-    accent: "#9bff45",
-    accentRgb: "155, 255, 69",
-    image: "/images/vexa-nebula-transparent.png",
-    profile: "A layered citrus fusion charged with a bright green note.",
-    note: "Beyond limits",
+    name: "FROST",
+    edition: "Mint–Lime",
+    tone: "05 / CRYO EDITION",
+    accent: "#d8f5ff",
+    accentRgb: "216, 245, 255",
+    image: "/images/vexa-frost-transparent.png",
+    profile: "A crystalline lime strike with a precise, subzero mint finish.",
+    note: "Subzero clarity",
+    badge: "NEW EDITION",
+    featured: true,
+    ingredients: createFormula({
+      collagen: "Hydrolyzed collagen (peptides)",
+      sucralose: "~0.04 g, to taste",
+      flavors: [
+        { name: "Natural lime flavor", amount: "0.4–0.7 ml, to taste" },
+        { name: "Natural mint flavor", amount: "0.15–0.3 ml, to taste" },
+      ],
+    }),
   },
 ];
 
@@ -79,10 +157,32 @@ function BoltIcon() {
   );
 }
 
+function FormulaTable({ product, compact = false }: { product: Product; compact?: boolean }) {
+  return (
+    <div className={`formula-table-wrap ${compact ? "is-compact" : ""}`}>
+      <table className="formula-table">
+        <caption className="sr-only">VEXA {product.name} concept formulation per 330 ml</caption>
+        <thead>
+          <tr><th>Ingredient</th><th>Amount per 330 ml</th></tr>
+        </thead>
+        <tbody>
+          {product.ingredients.map((ingredient) => (
+            <tr key={ingredient.name}>
+              <td>{ingredient.name}</td>
+              <td>{ingredient.amount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export default function VexaExperience() {
   const storyRef = useRef<HTMLElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const [activeProduct, setActiveProduct] = useState<number | null>(null);
+  const [activeFormula, setActiveFormula] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -172,6 +272,21 @@ export default function VexaExperience() {
     document.querySelector("#collection")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const formulaProduct = products[activeFormula];
+
+  const moveFormulaSelection = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const keys = ["ArrowLeft", "ArrowRight", "Home", "End"];
+    if (!keys.includes(event.key)) return;
+    event.preventDefault();
+    const nextIndex = event.key === "Home"
+      ? 0
+      : event.key === "End"
+        ? products.length - 1
+        : (index + (event.key === "ArrowRight" ? 1 : -1) + products.length) % products.length;
+    setActiveFormula(nextIndex);
+    document.querySelector<HTMLButtonElement>(`[data-formula-index="${nextIndex}"]`)?.focus();
+  };
+
   return (
     <main>
       <div className="noise" aria-hidden="true" />
@@ -236,7 +351,7 @@ export default function VexaExperience() {
           />
           <div className="can-reflection" aria-hidden="true" />
           <span className="product-callout callout-one"><i /> Next-generation formula</span>
-          <span className="product-callout callout-two"><i /> Yuzu original</span>
+          <span className="product-callout callout-two"><i /> Yuzu–Ginseng</span>
         </div>
 
         <div className="hero-bottom">
@@ -274,16 +389,16 @@ export default function VexaExperience() {
       <section className="collection section-shell" id="collection">
         <div className="section-heading reveal">
           <div>
-            <p className="eyebrow"><span /> 04 VISUAL EDITIONS</p>
+            <p className="eyebrow"><span /> 05 VISUAL EDITIONS</p>
             <h2>CHOOSE YOUR<br /><em>IMPULSE.</em></h2>
           </div>
-          <p>Four distinct characters. One functional formula. Open an edition to inspect every detail.</p>
+          <p>Five distinct characters. One functional core. Open an edition to inspect every detail.</p>
         </div>
 
         <div className="product-grid">
           {products.map((product, index) => (
             <article
-              className="product-card reveal"
+              className={`product-card reveal ${product.featured ? "is-featured" : ""}`}
               key={product.name}
               style={{
                 "--accent": product.accent,
@@ -294,7 +409,7 @@ export default function VexaExperience() {
             >
               <div className="card-topline">
                 <span>{product.tone}</span>
-                <span>330 ML</span>
+                <span>{product.badge ?? "330 ML"}</span>
               </div>
               <div className="product-image-wrap">
                 <div className="edition-grid" aria-hidden="true" />
@@ -320,33 +435,63 @@ export default function VexaExperience() {
         </div>
       </section>
 
-      <section className="formula" id="formula">
+      <section
+        className="formula"
+        id="formula"
+        style={{
+          "--accent": formulaProduct.accent,
+          "--accent-rgb": formulaProduct.accentRgb,
+        } as CSSProperties}
+      >
         <div className="formula-background" aria-hidden="true">
           <span>VEXA</span>
           <span>VEXA</span>
         </div>
         <div className="formula-visual reveal">
-          <div className="formula-image">
-            <img src="/images/vexa-nebula-transparent.png" alt="VEXA Nebula — front and back cans" loading="lazy" />
+          <div className="formula-image" key={formulaProduct.name}>
+            <img src={formulaProduct.image} alt={`VEXA ${formulaProduct.name} — front and back cans`} loading="lazy" />
           </div>
           <span className="formula-label label-energy"><i /> ENERGY</span>
           <span className="formula-label label-focus"><i /> FOCUS</span>
           <span className="formula-label label-recovery"><i /> RECOVERY</span>
+          <span className="formula-edition-mark">{formulaProduct.tone}</span>
         </div>
         <div className="formula-content reveal">
-          <p className="eyebrow"><span /> INSIDE THE FORMULA</p>
-          <h2>NOTHING<br />EXTRA.<br /><em>PURE IMPULSE.</em></h2>
-          <p className="formula-lead">A formula you can read. Every key component is printed on the can — here is what matters most.</p>
-          <div className="facts-grid">
-            {facts.map(([value, label], index) => (
-              <div key={label}>
-                <span>0{index + 1}</span>
-                <strong>{value}</strong>
-                <p>{label}</p>
-              </div>
+          <p className="eyebrow"><span /> FORMULA LAB / 330 ML</p>
+          <div className="formula-tabs" role="tablist" aria-label="Choose a VEXA formula">
+            {products.map((product, index) => (
+              <button
+                key={product.name}
+                id={`formula-tab-${index}`}
+                data-formula-index={index}
+                role="tab"
+                aria-selected={activeFormula === index}
+                aria-controls="formula-panel"
+                tabIndex={activeFormula === index ? 0 : -1}
+                className={activeFormula === index ? "is-active" : ""}
+                onClick={() => setActiveFormula(index)}
+                onKeyDown={(event) => moveFormulaSelection(event, index)}
+              >
+                <span>0{index + 1}</span>{product.name}
+              </button>
             ))}
           </div>
-          <p className="formula-footnote">Component values are stated per 330 ml can. High caffeine content.</p>
+          <div
+            className="formula-panel"
+            id="formula-panel"
+            role="tabpanel"
+            aria-labelledby={`formula-tab-${activeFormula}`}
+            key={formulaProduct.name}
+          >
+            <p className="formula-badge">{formulaProduct.badge}</p>
+            <h2>{formulaProduct.name}<br /><em>{formulaProduct.edition}</em></h2>
+            <p className="formula-lead">{formulaProduct.profile}</p>
+            <div className="formula-facts" aria-label="Core functional ingredients">
+              {facts.map(([value, label]) => <span key={label}><strong>{value}</strong>{label}</span>)}
+            </div>
+            <FormulaTable product={formulaProduct} />
+            <p className="formula-footnote">Concept formulation. Packaging artwork is illustrative and may be updated. High caffeine content.</p>
+          </div>
         </div>
       </section>
 
@@ -407,10 +552,14 @@ export default function VexaExperience() {
                 <div><dt>Collagen</dt><dd>6.6 g</dd></div>
                 <div><dt>BCAA</dt><dd>1 g</dd></div>
               </dl>
-              <p className="modal-warning">High caffeine content. See the product image for the complete ingredients and packaging information.</p>
+              <div className="modal-formula-heading">
+                <span>Concept formula</span><span>Per 330 ml</span>
+              </div>
+              <FormulaTable product={products[activeProduct]} compact />
+              <p className="modal-warning">Concept formulation. Packaging artwork is illustrative and may be updated. High caffeine content.</p>
               <div className="modal-navigation">
                 <button onClick={() => setActiveProduct((activeProduct + products.length - 1) % products.length)}>← Previous</button>
-                <span>{String(activeProduct + 1).padStart(2, "0")} / 04</span>
+                <span>{String(activeProduct + 1).padStart(2, "0")} / {String(products.length).padStart(2, "0")}</span>
                 <button onClick={() => setActiveProduct((activeProduct + 1) % products.length)}>Next →</button>
               </div>
             </div>
