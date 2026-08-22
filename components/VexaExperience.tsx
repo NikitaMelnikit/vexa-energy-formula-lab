@@ -121,7 +121,7 @@ const products: Product[] = [
     image: "/images/vexa-frost-transparent.png",
     profile: "A crystalline lime strike with a precise, subzero mint finish.",
     note: "Subzero clarity",
-    badge: "NEW EDITION",
+    badge: "CRYO EDITION",
     featured: true,
     ingredients: createFormula({
       collagen: "Hydrolyzed collagen (peptides)",
@@ -167,6 +167,26 @@ const products: Product[] = [
       flavors: [
         { name: "Natural pear flavor", amount: "0.4–0.7 ml, to taste" },
         { name: "Natural cardamom flavor", amount: "0.1–0.2 ml, to taste" },
+      ],
+    }),
+  },
+  {
+    name: "BLOOM",
+    edition: "White Peach–Jasmine",
+    tone: "08 / SILK SIGNAL",
+    accent: "#ffcf9d",
+    accentRgb: "255, 207, 157",
+    image: "/images/vexa-bloom-transparent.png",
+    profile: "Velvety white peach carried by a delicate jasmine bloom and a clean, luminous finish.",
+    note: "Floral lift",
+    badge: "NEW EDITION",
+    featured: true,
+    ingredients: createFormula({
+      collagen: "Hydrolyzed collagen (peptides)",
+      sucralose: "~0.04 g, to taste",
+      flavors: [
+        { name: "Natural white peach flavor", amount: "~0.4–0.7 ml, to taste" },
+        { name: "Natural jasmine flavor", amount: "~0.05–0.15 ml, to taste" },
       ],
     }),
   },
@@ -427,10 +447,10 @@ export default function VexaExperience() {
       <section className="collection section-shell" id="collection">
         <div className="section-heading reveal">
           <div>
-            <p className="eyebrow"><span /> 07 VISUAL EDITIONS</p>
+            <p className="eyebrow"><span /> 08 VISUAL EDITIONS</p>
             <h2>CHOOSE YOUR<br /><em>IMPULSE.</em></h2>
           </div>
-          <p>Seven distinct characters. One functional core. Open an edition to inspect every detail.</p>
+          <p>Eight distinct characters. One functional core. Open an edition to inspect every detail.</p>
         </div>
 
         <div className="product-grid">

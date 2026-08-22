@@ -367,7 +367,7 @@ img { display: block; max-width: 100%; }
 .label-recovery { left: 7%; bottom: 10%; }
 .formula-edition-mark { position: absolute; left: 5%; bottom: 7%; color: var(--accent); font: 500 9px/1 "Oswald"; letter-spacing: .18em; }
 .formula-content { position: relative; z-index: 2; min-width: 0; }
-.formula-tabs { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); margin-bottom: 38px; border: 1px solid var(--line); }
+.formula-tabs { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); margin-bottom: 38px; border: 1px solid var(--line); }
 .formula-tabs button { min-width: 0; padding: 15px 8px; color: rgba(255,255,255,.36); background: transparent; border-right: 1px solid var(--line); font: 500 10px/1 "Oswald"; letter-spacing: .12em; transition: color .25s ease, background .25s ease; }
 .formula-tabs button:last-child { border-right: 0; }
 .formula-tabs button span { display: block; margin-bottom: 7px; color: rgba(255,255,255,.18); font-size: 7px; }
@@ -418,6 +418,7 @@ footer > p { max-width: 680px; margin: 35px 0 70px; color: rgba(255,255,255,.34)
 .product-card:nth-child(5).is-visible { transition-delay: .08s; }
 .product-card:nth-child(6).is-visible { transition-delay: .12s; }
 .product-card:nth-child(7).is-visible { transition-delay: .04s; }
+.product-card:nth-child(8).is-visible { transition-delay: .1s; }
 
 .product-modal { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 3vw; }
 .modal-backdrop { position: absolute; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,.82); backdrop-filter: blur(16px); }
@@ -529,7 +530,7 @@ footer > p { max-width: 680px; margin: 35px 0 70px; color: rgba(255,255,255,.34)
   .label-energy { left: -1%; }
   .label-focus { right: -1%; }
   .formula-content h2 { font-size: 55px; margin-top: 12px; }
-  .formula-tabs { grid-template-columns: repeat(7, minmax(72px, 1fr)); overflow-x: auto; }
+  .formula-tabs { grid-template-columns: repeat(8, minmax(72px, 1fr)); overflow-x: auto; }
   .formula-tabs button { padding: 13px 7px; font-size: 8px; }
   .formula-facts { grid-template-columns: repeat(2, 1fr); }
   .formula-facts span:nth-child(2) { border-right: 0; }
